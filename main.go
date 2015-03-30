@@ -3,6 +3,7 @@ package main
 import (
 	"log"
 	"net/http"
+	_ "time"
 )
 var mymap map[string][]byte
 
@@ -13,7 +14,7 @@ func viewHandler(w http.ResponseWriter, r *http.Request) {
 	log.Printf("State %v", state)
 	state = !state
 	w.Header().Set("Content-Type", "image/svg+xml")
-	w.Header().Set("Cache-Control", "'no-cache, no-store, must-revalidate")
+	w.Header().Set("Cache-Control", "no-cache, no-store, must-revalidate")
 	if state {
 		w.Write(mymap["correct"])
 	} else {
